@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-11",
+  "test": "Fresh audio through ASR, joint acoustic model, both MOSS adapters and final format verifier",
+  "n_recordings": 4,
+  "all_passed": true,
+  "hardware": "One NVIDIA GH200 GPU and four CPU threads per recording; four workers",
+  "weights_staged_locally": true,
+  "network_disabled_during_inference": true,
+  "includes_cold_model_loading": true,
+  "not_a_bulk_throughput_benchmark": true,
+  "records": [
+    {
+      "rank": 0,
+      "id": "en-00159",
+      "language": "en",
+      "elapsed_s": 206.7404882069677,
+      "verified": true,
+      "events": 8,
+      "words": 53
+    },
+    {
+      "rank": 1,
+      "id": "en-06251",
+      "language": "en",
+      "elapsed_s": 203.48097964795306,
+      "verified": true,
+      "events": 8,
+      "words": 56
+    },
+    {
+      "rank": 2,
+      "id": "en-13004",
+      "language": "en",
+      "elapsed_s": 207.95870674494654,
+      "verified": true,
+      "events": 9,
+      "words": 54
+    },
+    {
+      "rank": 3,
+      "id": "de-00093",
+      "language": "de",
+      "elapsed_s": 200.65443502995186,
+      "verified": true,
+      "events": 7,
+      "words": 62
+    }
+  ]
+}

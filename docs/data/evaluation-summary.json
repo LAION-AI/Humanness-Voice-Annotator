@@ -1,0 +1,186 @@
+{
+  "rubric_id": "humanness-annotator-audio-review-v1",
+  "n_recordings": 50,
+  "languages": {
+    "en": 45,
+    "de": 5
+  },
+  "model_versions": [
+    "gemini-3.8-flash"
+  ],
+  "results": {
+    "composite": {
+      "n": 50,
+      "mean": 3.2630000000000003,
+      "bootstrap_95_ci": [
+        3.1919750000000002,
+        3.3320000000000003
+      ],
+      "recordings_rated_0_to_2": 0
+    },
+    "global_caption_fidelity": {
+      "n": 50,
+      "mean": 3.82,
+      "bootstrap_95_ci": [
+        3.7,
+        3.92
+      ],
+      "recordings_rated_0_to_2": 0
+    },
+    "global_emotion_fit": {
+      "n": 50,
+      "mean": 3.74,
+      "bootstrap_95_ci": [
+        3.6,
+        3.86
+      ],
+      "recordings_rated_0_to_2": 1
+    },
+    "sentence_emotion_fit": {
+      "n": 50,
+      "mean": 2.78,
+      "bootstrap_95_ci": [
+        2.62,
+        2.92
+      ],
+      "recordings_rated_0_to_2": 14
+    },
+    "utterance_talking_style_fit": {
+      "n": 50,
+      "mean": 3.86,
+      "bootstrap_95_ci": [
+        3.76,
+        3.94
+      ],
+      "recordings_rated_0_to_2": 0
+    },
+    "sentence_delivery_fit": {
+      "n": 50,
+      "mean": 3.1,
+      "bootstrap_95_ci": [
+        3.02,
+        3.2
+      ],
+      "recordings_rated_0_to_2": 0
+    },
+    "burst_description_fit": {
+      "n": 50,
+      "mean": 3.02,
+      "bootstrap_95_ci": [
+        2.86,
+        3.16
+      ],
+      "recordings_rated_0_to_2": 4
+    },
+    "burst_timing_fit": {
+      "n": 50,
+      "mean": 2.52,
+      "bootstrap_95_ci": [
+        2.36,
+        2.68
+      ],
+      "recordings_rated_0_to_2": 24
+    },
+    "event_precision": {
+      "n": 50,
+      "mean": 2.88,
+      "bootstrap_95_ci": [
+        2.74,
+        3.0
+      ],
+      "recordings_rated_0_to_2": 6
+    },
+    "event_coverage": {
+      "n": 50,
+      "mean": 3.46,
+      "bootstrap_95_ci": [
+        3.32,
+        3.6
+      ],
+      "recordings_rated_0_to_2": 0
+    },
+    "transcript_fidelity": {
+      "n": 50,
+      "mean": 4.3,
+      "bootstrap_95_ci": [
+        4.14,
+        4.46
+      ],
+      "recordings_rated_0_to_2": 0
+    },
+    "speech_timing_fit": {
+      "n": 50,
+      "mean": 3.42,
+      "bootstrap_95_ci": [
+        3.28,
+        3.56
+      ],
+      "recordings_rated_0_to_2": 1
+    },
+    "readability": {
+      "n": 50,
+      "mean": 3.86,
+      "bootstrap_95_ci": [
+        3.76,
+        3.94
+      ],
+      "recordings_rated_0_to_2": 0
+    }
+  },
+  "local_segment_reviews": 662,
+  "local_segment_diagnostics": {
+    "emotion_fit_mean": 3.06797583081571,
+    "delivery_fit_mean": 3.3836858006042294,
+    "aggregation": "Unweighted across local segments; diagnostic only, excluded from the clip-weighted composite"
+  },
+  "estimated_list_price_usd": 0.43679025,
+  "usage_totals": {
+    "promptTokenCount": 334502,
+    "candidatesTokenCount": 49577,
+    "thoughtsTokenCount": 0,
+    "totalTokenCount": 384079
+  },
+  "pricing": {
+    "date": "2026-10-11",
+    "input_usd_per_million": 0.75,
+    "output_usd_per_million": 3.75,
+    "source": "https://ai.google.dev/gemini-api/docs/pricing",
+    "not_an_invoice": true
+  },
+  "rubric": {
+    "id": "humanness-annotator-audio-review-v1",
+    "scale": "Integer 0\u20135: 0 unusable/wrong; 1 major errors; 2 partly supported; 3 useful with notable errors; 4 accurate with minor errors; 5 fully correct and useful",
+    "composite_weights": {
+      "global_caption_fidelity": 0.15,
+      "global_emotion_fit": 0.1,
+      "sentence_emotion_fit": 0.2,
+      "utterance_talking_style_fit": 0.15,
+      "sentence_delivery_fit": 0.1,
+      "burst_description_fit": 0.1,
+      "burst_timing_fit": 0.1,
+      "event_precision": 0.05,
+      "event_coverage": 0.05
+    },
+    "definitions": {
+      "global_caption_fidelity": "Does GENERAL describe the audible voice, performance and environment accurately, without invented demographic/identity/psychological claims?",
+      "global_emotion_fit": "Are the whole-utterance emotion descriptions supported by audible affect, including intensity and changes? Important omissions reduce usefulness; restrained descriptions are appropriate when affect is ambiguous.",
+      "sentence_emotion_fit": "Do emotion cues fit their particular spoken segments and intensity? Consider both false emotion tags and important missing affect. No emotion tag is not a claim of neutrality: do not penalize appropriate restraint on ambiguous segments.",
+      "utterance_talking_style_fit": "Do GENERAL's speaking-style claims match audible tempo, articulation, breathiness, pitch movement, register, emphasis and performance style?",
+      "sentence_delivery_fit": "Do local delivery/voice tags fit the corresponding spoken segment rather than merely repeating a global trait?",
+      "burst_description_fit": "Does each free-form burst caption match the actual nonverbal vocal sound in its selected interval? Reward acoustic accuracy, not verbosity.",
+      "burst_timing_fit": "Do absolute event starts/ends cover the audible events without unnecessary unrelated speech?",
+      "event_precision": "Are proposed intervals real nonverbal vocal events rather than spoken syllables or spurious detections? This is a reviewer rating, not measured detection precision.",
+      "event_coverage": "Are salient audible nonverbal events covered? This is a reviewer rating, not measured detection recall.",
+      "transcript_fidelity": "Does the recognized word sequence match what is heard? This is diagnostic, not part of the weighted composite.",
+      "speech_timing_fit": "Do speech budgets and pause intervals fit the audio? This is diagnostic, separate from mechanical formatting validation.",
+      "readability": "Is the annotation understandable, concise and useful? This is diagnostic, not part of the weighted composite."
+    },
+    "aggregation": "Equal weight per recording; fixed weights above. Per-segment ratings are diagnostic and do not overweight recordings with more sentences.",
+    "empty_event_policy": "If no event is audible and none is proposed, event ratings are 5. False proposals or omitted audible events reduce the corresponding ratings.",
+    "important_limitations": "Single automated reviewer; 50 reused synthetic acting recordings, 45 English/5 German; no human reference labels, no inter-rater agreement. New rubric is not comparable numerically to the older MOSS/procedural composite. No settings are optimized using these new ratings."
+  },
+  "automated_reviewer_not_human_ground_truth": true,
+  "bootstrap": "10,000 clip resamples, seed 20261011; excludes reviewer bias and domain shift",
+  "retuning_using_these_scores": false,
+  "new_rubric_not_comparable_to_previous_composite": true
+}

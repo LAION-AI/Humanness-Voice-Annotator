@@ -1,0 +1,31 @@
+GENERAL: A single young-to-mature adult masculine-coded speaker delivers an intensely intimate, whispered monologue in General American English. The vocal production is heavily unvoiced and breathy, characterized by low harmonicity, warm low-mid resonance, and close-mic proximity that borders on an ASMR or bedroom whisper style. The tempo is very slow and fragmented into short, cautious breath groups separated by frequent, audible inhalations and weary sighs. The emotional tone is saturated with deep affection, protective tenderness, and underlying distress or fear, as if trying to soothe a loved one in a dangerous or high-stakes situation. The recording is pristine with a dead-quiet background, allowing every subtle breath, lip parting, and vocal tremor to be clearly heard.
+SCRIPT:
+(very whispered, very fading, very having a crush, enjoyable; 2.72 seconds duration) ("A heavy, shuddering exhalation and breathy sigh precedes the opening line, establishing a state of acute distress and physical exhaustion.", 1.08 seconds) I won't let anything touch you.
+[0.24 seconds pause]
+(very non-narrative, choppy, very uncertainty; 1.12 seconds duration) Do you hear me?
+[0.32 seconds pause]
+(very darkening, very clean-content, very detachment; 0.43 seconds duration) Nothing.
+[0.65 seconds pause]
+(very full, very denasal, slightly schadenfreude, enjoyable; 2.47 seconds duration) I'll ("A quick, tense inhalation taken through the mouth between 'Nothing' and 'I'll tear the store down', showing physical bracing and elevated respiratory demand.", 0.66 seconds) tear this door down before they get close.
+[0.21 seconds pause]
+(very organic, very whispered, detachment; 0.03 seconds duration) Just
+[0.85 seconds pause]
+(very organic, very whispered, detachment; 0.87 seconds duration) stay behind
+[0.25 seconds pause]
+(very organic, very whispered, detachment; 0.56 seconds duration) me.
+(very breathy, very denasal, very burnout, enjoyable; 2.44 seconds duration) ("A quick, tense inhalation taken through the mouth immediately before whispering 'We can hide in the crawlspace', reflecting heightened anxiety and physical breathlessness.", 0.66 seconds) We can hide in the crawl space or ("A sharp, constricted gasp of air taken in sudden panic right before whispering 'No, they already know.'", 0.80 seconds)
+(very breathy, very denasal, very burnout, enjoyable; 2.28 seconds duration) ("A heavy, despondent sigh and breath release following the realization that the threat has been discovered, leading into a quiet, defeated whisper.", 1.00 seconds) No, they already know. ("A fragile, breathy whimper with a slight pitch tremor occurs in the pause before 'Please', signaling deep vulnerability and fear.", 0.68 seconds)
+(very noisy, very breathy, very terror; 1.44 seconds duration) ("A quick, tense inhalation taken right before pleading 'Please', showing emotional vulnerability and physical breathlessness.", 0.60 seconds) Please ("A quick, breathy gasp of air taken right before pleading 'Please', showing desperate vulnerability.", 0.54 seconds)
+(very noisy, very breathy, very terror; 1.12 seconds duration) take me instead.
+(very meek, very asmr, saudade; 0.23 seconds duration) Just
+[0.57 seconds pause]
+(very meek, very asmr, saudade; 0.59 seconds duration) take me.
+[2.21 seconds pause]
+(very asmr, very organic, very trust; 0.90 seconds duration) It's okay, baby.
+[0.54 seconds pause]
+(very fading, very effortless, very comfort; 0.50 seconds duration) You're safe.
+[0.94 seconds pause]
+(very thin, non-instructional, very infatuation; 1.12 seconds duration) I've got you.
+[0.32 seconds pause]
+(very fading, very monotone, very boredom; 0.74 seconds duration) I promise.
+[1.47 seconds pause]

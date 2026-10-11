@@ -1,0 +1,26 @@
+{
+  "models": {
+    "humaneness_ears": {
+      "repo": "laion/humaneness-ears-base-medium",
+      "revision": "818506970d93c809a3295a0a02c40dee8ff2bfc3",
+      "variant": "medium"
+    },
+    "parakeet": {
+      "repo": "nvidia/parakeet-tdt-0.6b-v3",
+      "revision": "541d1f99c6b0c3cd0b11a95167540bb8edefd82b"
+    },
+    "moss_voice": {
+      "repo": "laion/moss-voice-captioner",
+      "revision": "86d3c6639fe24e10ed1feafb05fb2f9d3311dadd"
+    },
+    "moss_burst": {
+      "repo": "laion/moss-vocal-burst-captioner",
+      "revision": "e6e7fae66a9f97a542a7f6df43239a18fe33bc63"
+    }
+  },
+  "procedural": {
+    "repository": "LAION-AI/procedural-voice-captions",
+    "revision": "df9514b05f234c692a9e88df7633f5460346d2c9",
+    "normalization_sha256": "c96503622619f63528a12ddcb28b19d4beddff7d94522d11b6a83dabad654f43"
+  }
+}

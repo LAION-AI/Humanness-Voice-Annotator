@@ -1,0 +1,16 @@
+{
+  "n_recordings": 50,
+  "languages": {
+    "en": 45,
+    "de": 5
+  },
+  "source_sentences": 443,
+  "timed_speech_segments": 662,
+  "selected_burst_intervals": 360,
+  "words_preserved": 2703,
+  "all_50_verified": true,
+  "new_neural_inference_for_this_demo": false,
+  "saved_predictions_reused": true,
+  "format": "GENERAL / SCRIPT",
+  "format_version": "humanness-general-script-v1"
+}

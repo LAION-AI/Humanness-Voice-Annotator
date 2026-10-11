@@ -1,0 +1,385 @@
+{
+  "audio_sha256": "afae5a11d9c13d5e2f1580844e550b76b527a5aaccf65468c5cdf6a288a9749b",
+  "audio_duration_s": 28.128,
+  "voice_caption": {
+    "key": "format-voice-en-00159",
+    "sample_id": "en-00159",
+    "task": "caption",
+    "temperature": 0.0,
+    "interval": null,
+    "event_index": null,
+    "prediction": "A single young-to-mature adult masculine-coded speaker delivers an intensely intimate, whispered monologue in General American English. The vocal production is heavily unvoiced and breathy, characterized by low harmonicity, warm low-mid resonance, and close-mic proximity that borders on an ASMR or bedroom whisper style. The tempo is very slow and fragmented into short, cautious breath groups separated by frequent, audible inhalations and weary sighs. The emotional tone is saturated with deep affection, protective tenderness, and underlying distress or fear, as if trying to soothe a loved one in a dangerous or high-stakes situation. The recording is pristine with a dead-quiet background, allowing every subtle breath, lip parting, and vocal tremor to be clearly heard.",
+    "prompt": "Describe the audible voice, delivery, emotions, vocal bursts and recording environment in English. Ground the description in this audio.",
+    "generated_tokens": 155,
+    "hit_token_limit": false,
+    "time_markers": false,
+    "decoding": "left-padded batched generation with per-example position IDs",
+    "top_p": null,
+    "top_k": null,
+    "do_sample": false,
+    "batch_seed": 27406874,
+    "full_audio": true,
+    "reference_not_in_prompt": true,
+    "elapsed_batch_s": 13.74572879995685
+  },
+  "burst_captions": [
+    {
+      "start_s": 0.04,
+      "end_s": 1.12,
+      "onset_probability": 0.9559813141822815,
+      "top3_classes": [
+        {
+          "label": "Exasperated Sigh",
+          "softmax_probability": 0.5328783988952637
+        },
+        {
+          "label": "Breath",
+          "softmax_probability": 0.10658238083124161
+        },
+        {
+          "label": "Relief Sigh",
+          "softmax_probability": 0.09332665055990219
+        }
+      ],
+      "event_index": 0,
+      "caption": {
+        "key": "format-burst-en-00159-0",
+        "sample_id": "en-00159",
+        "task": "burst_caption",
+        "temperature": 0.0,
+        "interval": [
+          0.04,
+          1.12
+        ],
+        "event_index": 0,
+        "prediction": "A heavy, shuddering exhalation and breathy sigh precedes the opening line, establishing a state of acute distress and physical exhaustion.",
+        "prompt": "Describe only the vocal burst audible from 0.040000 to 1.120000 seconds in the full recording. Times are relative to the beginning of the supplied audio. Use surrounding audio as context. Write a detailed English acoustic and expressive description of this event.",
+        "generated_tokens": 30,
+        "hit_token_limit": false,
+        "time_markers": true,
+        "decoding": "left-padded batched generation with per-example position IDs",
+        "top_p": null,
+        "top_k": null,
+        "do_sample": false,
+        "batch_seed": 29515404,
+        "full_audio": true,
+        "reference_not_in_prompt": true,
+        "elapsed_batch_s": 3.3450511030387133
+      }
+    },
+    {
+      "start_s": 5.48,
+      "end_s": 6.14,
+      "onset_probability": 0.8529354929924011,
+      "top3_classes": [
+        {
+          "label": "Sharp Inhale",
+          "softmax_probability": 0.2682294547557831
+        },
+        {
+          "label": "Breath",
+          "softmax_probability": 0.23304179310798645
+        },
+        {
+          "label": "Exasperated Sigh",
+          "softmax_probability": 0.12571661174297333
+        }
+      ],
+      "event_index": 1,
+      "caption": {
+        "key": "format-burst-en-00159-1",
+        "sample_id": "en-00159",
+        "task": "burst_caption",
+        "temperature": 0.0,
+        "interval": [
+          5.48,
+          6.14
+        ],
+        "event_index": 1,
+        "prediction": "A quick, tense inhalation taken through the mouth between 'Nothing' and 'I'll tear the store down', showing physical bracing and elevated respiratory demand.",
+        "prompt": "Describe only the vocal burst audible from 5.480000 to 6.140000 seconds in the full recording. Times are relative to the beginning of the supplied audio. Use surrounding audio as context. Write a detailed English acoustic and expressive description of this event.",
+        "generated_tokens": 33,
+        "hit_token_limit": false,
+        "time_markers": true,
+        "decoding": "left-padded batched generation with per-example position IDs",
+        "top_p": null,
+        "top_k": null,
+        "do_sample": false,
+        "batch_seed": 22877904,
+        "full_audio": true,
+        "reference_not_in_prompt": true,
+        "elapsed_batch_s": 3.1844331669854
+      }
+    },
+    {
+      "start_s": 10.44,
+      "end_s": 11.1,
+      "onset_probability": 0.8006919622421265,
+      "top3_classes": [
+        {
+          "label": "Exasperated Sigh",
+          "softmax_probability": 0.28798848390579224
+        },
+        {
+          "label": "Breath",
+          "softmax_probability": 0.11727047711610794
+        },
+        {
+          "label": "Sharp Inhale",
+          "softmax_probability": 0.11727047711610794
+        }
+      ],
+      "event_index": 2,
+      "caption": {
+        "key": "format-burst-en-00159-2",
+        "sample_id": "en-00159",
+        "task": "burst_caption",
+        "temperature": 0.0,
+        "interval": [
+          10.44,
+          11.1
+        ],
+        "event_index": 2,
+        "prediction": "A quick, tense inhalation taken through the mouth immediately before whispering 'We can hide in the crawlspace', reflecting heightened anxiety and physical breathlessness.",
+        "prompt": "Describe only the vocal burst audible from 10.440000 to 11.100000 seconds in the full recording. Times are relative to the beginning of the supplied audio. Use surrounding audio as context. Write a detailed English acoustic and expressive description of this event.",
+        "generated_tokens": 33,
+        "hit_token_limit": false,
+        "time_markers": true,
+        "decoding": "left-padded batched generation with per-example position IDs",
+        "top_p": null,
+        "top_k": null,
+        "do_sample": false,
+        "batch_seed": 22877904,
+        "full_audio": true,
+        "reference_not_in_prompt": true,
+        "elapsed_batch_s": 3.1852623960003257
+      }
+    },
+    {
+      "start_s": 12.34,
+      "end_s": 13.14,
+      "onset_probability": 0.6791787147521973,
+      "top3_classes": [
+        {
+          "label": "Exasperated Sigh",
+          "softmax_probability": 0.2256413698196411
+        },
+        {
+          "label": "Breath",
+          "softmax_probability": 0.1255883425474167
+        },
+        {
+          "label": "Sharp Inhale",
+          "softmax_probability": 0.10250221192836761
+        }
+      ],
+      "event_index": 3,
+      "caption": {
+        "key": "format-burst-en-00159-3",
+        "sample_id": "en-00159",
+        "task": "burst_caption",
+        "temperature": 0.0,
+        "interval": [
+          12.34,
+          13.14
+        ],
+        "event_index": 3,
+        "prediction": "A sharp, constricted gasp of air taken in sudden panic right before whispering 'No, they already know.'",
+        "prompt": "Describe only the vocal burst audible from 12.340000 to 13.140000 seconds in the full recording. Times are relative to the beginning of the supplied audio. Use surrounding audio as context. Write a detailed English acoustic and expressive description of this event.",
+        "generated_tokens": 25,
+        "hit_token_limit": false,
+        "time_markers": true,
+        "decoding": "left-padded batched generation with per-example position IDs",
+        "top_p": null,
+        "top_k": null,
+        "do_sample": false,
+        "batch_seed": 22877904,
+        "full_audio": true,
+        "reference_not_in_prompt": true,
+        "elapsed_batch_s": 3.185911565902643
+      }
+    },
+    {
+      "start_s": 12.82,
+      "end_s": 13.82,
+      "onset_probability": 0.8244618773460388,
+      "top3_classes": [
+        {
+          "label": "Exasperated Sigh",
+          "softmax_probability": 0.34485265612602234
+        },
+        {
+          "label": "Breath",
+          "softmax_probability": 0.1926906406879425
+        },
+        {
+          "label": "Exhausted Groan",
+          "softmax_probability": 0.07785405218601227
+        }
+      ],
+      "event_index": 4,
+      "caption": {
+        "key": "format-burst-en-00159-4",
+        "sample_id": "en-00159",
+        "task": "burst_caption",
+        "temperature": 0.0,
+        "interval": [
+          12.82,
+          13.82
+        ],
+        "event_index": 4,
+        "prediction": "A heavy, despondent sigh and breath release following the realization that the threat has been discovered, leading into a quiet, defeated whisper.",
+        "prompt": "Describe only the vocal burst audible from 12.820000 to 13.820000 seconds in the full recording. Times are relative to the beginning of the supplied audio. Use surrounding audio as context. Write a detailed English acoustic and expressive description of this event.",
+        "generated_tokens": 29,
+        "hit_token_limit": false,
+        "time_markers": true,
+        "decoding": "left-padded batched generation with per-example position IDs",
+        "top_p": null,
+        "top_k": null,
+        "do_sample": false,
+        "batch_seed": 22877904,
+        "full_audio": true,
+        "reference_not_in_prompt": true,
+        "elapsed_batch_s": 3.1864884169772267
+      }
+    },
+    {
+      "start_s": 14.82,
+      "end_s": 15.5,
+      "onset_probability": 0.7049732804298401,
+      "top3_classes": [
+        {
+          "label": "Trembling Whimper",
+          "softmax_probability": 0.22797738015651703
+        },
+        {
+          "label": "Breath",
+          "softmax_probability": 0.21416492760181427
+        },
+        {
+          "label": "Sharp Inhale",
+          "softmax_probability": 0.12013564258813858
+        }
+      ],
+      "event_index": 5,
+      "caption": {
+        "key": "format-burst-en-00159-5",
+        "sample_id": "en-00159",
+        "task": "burst_caption",
+        "temperature": 0.0,
+        "interval": [
+          14.82,
+          15.5
+        ],
+        "event_index": 5,
+        "prediction": "A fragile, breathy whimper with a slight pitch tremor occurs in the pause before 'Please', signaling deep vulnerability and fear.",
+        "prompt": "Describe only the vocal burst audible from 14.820000 to 15.500000 seconds in the full recording. Times are relative to the beginning of the supplied audio. Use surrounding audio as context. Write a detailed English acoustic and expressive description of this event.",
+        "generated_tokens": 28,
+        "hit_token_limit": false,
+        "time_markers": true,
+        "decoding": "left-padded batched generation with per-example position IDs",
+        "top_p": null,
+        "top_k": null,
+        "do_sample": false,
+        "batch_seed": 22877904,
+        "full_audio": true,
+        "reference_not_in_prompt": true,
+        "elapsed_batch_s": 3.1870560199022293
+      }
+    },
+    {
+      "start_s": 15.28,
+      "end_s": 15.88,
+      "onset_probability": 0.7325918078422546,
+      "top3_classes": [
+        {
+          "label": "Breath",
+          "softmax_probability": 0.3802388310432434
+        },
+        {
+          "label": "Trembling Whimper",
+          "softmax_probability": 0.15363037586212158
+        },
+        {
+          "label": "Sharp Inhale",
+          "softmax_probability": 0.12637290358543396
+        }
+      ],
+      "event_index": 6,
+      "caption": {
+        "key": "format-burst-en-00159-6",
+        "sample_id": "en-00159",
+        "task": "burst_caption",
+        "temperature": 0.0,
+        "interval": [
+          15.28,
+          15.88
+        ],
+        "event_index": 6,
+        "prediction": "A quick, tense inhalation taken right before pleading 'Please', showing emotional vulnerability and physical breathlessness.",
+        "prompt": "Describe only the vocal burst audible from 15.280000 to 15.880000 seconds in the full recording. Times are relative to the beginning of the supplied audio. Use surrounding audio as context. Write a detailed English acoustic and expressive description of this event.",
+        "generated_tokens": 22,
+        "hit_token_limit": false,
+        "time_markers": true,
+        "decoding": "left-padded batched generation with per-example position IDs",
+        "top_p": null,
+        "top_k": null,
+        "do_sample": false,
+        "batch_seed": 22877904,
+        "full_audio": true,
+        "reference_not_in_prompt": true,
+        "elapsed_batch_s": 3.1876621179981157
+      }
+    },
+    {
+      "start_s": 16.34,
+      "end_s": 16.88,
+      "onset_probability": 0.6627964973449707,
+      "top3_classes": [
+        {
+          "label": "Trembling Whimper",
+          "softmax_probability": 0.4384610056877136
+        },
+        {
+          "label": "Sharp Inhale",
+          "softmax_probability": 0.18135535717010498
+        },
+        {
+          "label": "Quiet Sob",
+          "softmax_probability": 0.09556755423545837
+        }
+      ],
+      "event_index": 7,
+      "caption": {
+        "key": "format-burst-en-00159-7",
+        "sample_id": "en-00159",
+        "task": "burst_caption",
+        "temperature": 0.0,
+        "interval": [
+          16.34,
+          16.88
+        ],
+        "event_index": 7,
+        "prediction": "A quick, breathy gasp of air taken right before pleading 'Please', showing desperate vulnerability.",
+        "prompt": "Describe only the vocal burst audible from 16.340000 to 16.880000 seconds in the full recording. Times are relative to the beginning of the supplied audio. Use surrounding audio as context. Write a detailed English acoustic and expressive description of this event.",
+        "generated_tokens": 21,
+        "hit_token_limit": false,
+        "time_markers": true,
+        "decoding": "left-padded batched generation with per-example position IDs",
+        "top_p": null,
+        "top_k": null,
+        "do_sample": false,
+        "batch_seed": 22877904,
+        "full_audio": true,
+        "reference_not_in_prompt": true,
+        "elapsed_batch_s": 3.1882415609434247
+      }
+    }
+  ],
+  "locator_settings": {
+    "threshold": 0.6,
+    "min_duration_s": 0.08,
+    "nms_overlap_fraction": 0.5,
+    "event_cap": null
+  }
+}

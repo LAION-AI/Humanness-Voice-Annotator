@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The GENERAL / SCRIPT format · Humanness Voice Annotator</title>
+<meta name="description" content="Listen to reproducible voice annotations combining MOSS captions, Humaneness Ears scores, event locations and timed ASR words.">
+<link rel="stylesheet" href="assets/site.css"></head><body><a href="#main" class="skip">Skip to content</a><header><nav aria-label="Main navigation">
+<a class="brand" href="index.html">Humanness Voice Annotator</a><a href="index.html#listening">Listen</a>
+<a href="format.html">Format</a><a href="models.html">Models &amp; training</a><a href="pipeline.html">Run the pipeline</a>
+<a href="evaluation.html">Evaluation</a><a href="https://github.com/LAION-AI/Humanness-Voice-Annotator">GitHub ↗</a></nav></header>
+<main id="main"><div class="hero"><div class="eyebrow">An open, reproducible voice annotation pipeline</div><h1>The GENERAL / SCRIPT format</h1></div>
+<p class="lead">One description of the voice. One chronological performance script. A precise JSON record underneath.</p>
+<section><h2>Read the notation</h2><div class="table-wrap"><table><thead><tr><th>Syntax</th><th>Meaning</th><th>How time advances</th></tr></thead><tbody>
+<tr><td><code>GENERAL: …</code></td><td>The original MOSS whole-recording caption.</td><td>No timeline budget.</td></tr>
+<tr><td><code>SCRIPT:</code></td><td>Recognized speech, delivery cues, events and alignment gaps in temporal order.</td><td>See the individual items below.</td></tr>
+<tr><td><code>(quiet, hesitant; 1.20 seconds duration)</code></td><td>Delivery/emotion cue for the following speech segment, plus its elapsed budget.</td><td>1.20 s, including events written inside this segment.</td></tr>
+<tr><td><code>("A soft breathy laugh.", 0.50 seconds)</code></td><td>Quoted, free-form MOSS burst description and full event duration.</td><td>Adds time only when it is a standalone item.</td></tr>
+<tr><td><code>[0.30 seconds pause]</code></td><td>A gap in the recognized speech/selected-event timeline.</td><td>0.30 s. Background sound may remain audible.</td></tr>
+</tbody></table></div></section>
+<section><h2>An illustrative example</h2><p>This example explains the grammar; it is not one of the evaluated model outputs.</p><pre>GENERAL: One close-miked speaker speaks quietly and hesitantly, becoming warmer toward the end. A short breath and a light laugh are audible; the background is quiet.
+SCRIPT:
+(quiet, hesitant; 1.20 seconds duration) I… wasn't sure.
+[0.30 seconds pause]
+("A short, unvoiced inhalation through the mouth.", 0.40 seconds)
+(warmer, relieved; 2.30 seconds duration) ("A soft, breathy laugh.", 0.50 seconds) But I'm glad you came.</pre>
+<p>The total elapsed budget is <strong>4.20 s</strong>: 1.20 + 0.30 + 0.40 + 2.30. The inline laugh is already contained in the final segment. Adding it again would invent time.</p></section>
+<section><h2>Exact endpoints and overlap live in JSON</h2><p>The text is readable linear notation. Real speech and vocal events can overlap. Events are inserted at the nearest word gap to their midpoint; this is an approximate prose anchor, not sample-accurate placement. Use the JSON start/end values for localization or training.</p><pre>{
+  "schema_version": "humanness-general-script-v1",
+  "segments": [{"id": "segment-002", "start_s": 1.90, "end_s": 4.20,
+                "duration_includes_inline_events": true}],
+  "burst_events": [{"id": "HVA_EVENT_0001", "start_s": 1.90, "end_s": 2.40,
+                    "duration_s": 0.50, "caption": "A soft, breathy laugh."}]
+}</pre><p>Each burst has both a start and an end. Full original captions, unmodified raw scores, reference z-scores, word endpoints, source-sentence indices, overlaps, selected settings and model revisions remain in the canonical sidecar.</p></section>
+<section><h2>Sentences, segments and pauses</h2><p>Parakeet recognizes words with timestamps. The procedural planner aligns sentences to those words, then splits speech around gaps of at least 0.20 s and timeline boundaries. The demo has 443 source sentences and 662 timed speech segments. Split pieces share their source-sentence Humaneness Ears prediction, computed with approximately 0.10 s of extra context.</p><p>A segment may therefore contain only part of a sentence. Its displayed duration is a timeline budget, which may absorb subthreshold gaps or endpoint adjustments. Square-bracket pauses are inferred alignment gaps; they do not guarantee acoustic silence.</p></section>
+<section><h2>Machine-readable grammar and checks</h2><p>Speech lines start with <code>(cue; N seconds duration)</code>. Event prose is a JSON-quoted string: quotation marks, parentheses, backslashes and newlines inside model-generated prose are escaped safely. A standalone event occupies its own line. A pause occupies its own line. Only actual recognized speech sits outside the annotations.</p><p>The independent verifier parses the final text, checks positive durations, preserves every recognized word once and in order, retains every selected event once, and checks the printed elapsed budget against the audio within 0.015 s. Overlapping standalone events use the planner's shared budget representation. This proves formatting consistency; it does not prove that the words, labels or intervals are acoustically correct.</p><p>Version <code>humanness-general-script-v1</code> uses combined round-bracket speech cues/durations. It extends the upstream procedural formatter, which originally emitted square-bracket speech durations. Consumers should use this versioned parser or the canonical JSON rather than assume that an older text parser accepts the new syntax.</p></section>
+<section><h2>What remains a prediction</h2><p>Do not read a z-score as an emotion probability, a class softmax as calibrated confidence, or a duration as evidence that an event exists. GENERAL preserves the MOSS output verbatim, including possible unsupported claims. The reviewer notes and exact output are published together in the <a href="index.html#listening">listening grid</a>.</p></section>
+</main><footer>LAION · 11 October 2026 · Original code, documentation and new annotations: CC BY 4.0 ·
+<a href="https://github.com/LAION-AI/Humanness-Voice-Annotator/blob/main/THIRD_PARTY.md">Upstream credits and retained licenses</a></footer><script src="assets/site.js" defer></script></body></html>

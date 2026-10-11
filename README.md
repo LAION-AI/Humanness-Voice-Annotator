@@ -1,0 +1,176 @@
+# Humanness Voice Annotator
+
+**[Listen to the 50-example demo →](https://projects.laion.ai/Humanness-Voice-Annotator/)** · [Format guide](https://projects.laion.ai/Humanness-Voice-Annotator/format.html) · [Models and training](https://projects.laion.ai/Humanness-Voice-Annotator/models.html) · [Evaluation](https://projects.laion.ai/Humanness-Voice-Annotator/evaluation.html)
+
+Turn audio into a description of the voice and a timed performance script. Humanness Voice Annotator combines **two MOSS captioning adapters, Humaneness Ears Medium, Parakeet v3 and the procedural voice-captioning rules**. Its default output is one documented **`GENERAL / SCRIPT`** format, backed by a JSON sidecar with absolute timestamps and original predictions.
+
+This release connects existing models; it does not train a new neural model. The audio remains the source of evidence. Descriptions, emotion tags and event locations are machine predictions and can be wrong. We publish the predictions, errors, format checks and an audio-based automated review together so you can judge the results yourself.
+
+## What the output looks like
+
+This short example is **illustrative**, not an evaluated recording:
+
+```text
+GENERAL: One close-miked speaker speaks quietly and hesitantly, becoming warmer toward the end. A short breath and a light laugh are audible; the background is quiet.
+SCRIPT:
+(quiet, hesitant; 1.20 seconds duration) I… wasn't sure.
+[0.30 seconds pause]
+("A short, unvoiced inhalation through the mouth.", 0.40 seconds)
+(warmer, relieved; 2.30 seconds duration) ("A soft, breathy laugh.", 0.50 seconds) But I'm glad you came.
+```
+
+The elapsed budget is **4.20 seconds**. The laugh is inside the last speech segment, so its 0.50 s is already included in that segment's 2.30 s budget. A standalone burst advances time; an inline burst does not advance it again.
+
+| Part | Meaning | Source |
+|---|---|---|
+| `GENERAL:` | Full-recording description of audible voice, delivery and environment | MOSS voice-captioner |
+| `(cue; N seconds duration)` | Local delivery/emotion cue and elapsed speech-segment budget | Humaneness Ears scores + procedural selection + ASR alignment |
+| `("description", N seconds)` | Free-form description of a selected nonverbal vocal event | MOSS burst-captioner, given full audio and **both** event endpoints |
+| `[N seconds pause]` | Gap in the inferred speech/event timeline | Word/event endpoints |
+| Spoken text | Recognized words, kept once and in order | Parakeet v3 |
+| JSON sidecar | Exact starts/ends, overlaps, scores, raw captions, model revisions and provenance | All stages |
+
+Pauses are alignment gaps, not proof of acoustic silence. Their budgets can include background sound or missed events. Speech segments can be shorter than grammatical sentences because pauses split the script. All segments retain their source-sentence index. The round-bracket speech-duration syntax is this project's versioned format; it is an extension of the procedural formatter, whose original output used square-bracket speech durations. See the [complete format contract](https://projects.laion.ai/Humanness-Voice-Annotator/format.html).
+
+## The pipeline
+
+```mermaid
+flowchart TD
+  A[Original audio: mono 16 kHz for inference] --> P[Parakeet v3: words and timestamps]
+  A --> H[Humaneness Ears Medium: global scores and burst proposals]
+  P --> L[Aligned sentence crops + small context]
+  L --> H2[Humaneness Ears Medium: local scores]
+  H2 --> Z[Reference z-scores + compact procedural cues]
+  A --> M[MOSS voice LoRA: whole-recording caption]
+  H --> E[Filter event intervals: threshold 0.6 + overlap suppression]
+  A --> B[MOSS burst LoRA: full audio plus start and end]
+  E --> B
+  P --> F[Timing planner and independent format verifier]
+  Z --> F
+  M --> F
+  B --> F
+  F --> O[GENERAL / SCRIPT + canonical JSON]
+```
+
+| Component | Responsibility | Release |
+|---|---|---|
+| Humaneness Ears **Medium** | 40 emotion scores, 57 VoiceNet dimensions, quality scores, embeddings, frame/event predictions and event types | [Model and methods](https://huggingface.co/laion/humaneness-ears-base-medium) |
+| Parakeet TDT 0.6B v3 | ASR and word timestamps; supports 25 European languages | [NVIDIA model](https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3) |
+| MOSS voice-captioner | Full-recording voice/performance caption | [Weights, inference and training](https://huggingface.co/laion/moss-voice-captioner) |
+| MOSS vocal-burst-captioner | Prose about a **specified** interval in the full recording | [Weights, inference and training](https://huggingface.co/laion/moss-vocal-burst-captioner) |
+| Procedural voice captions | Reference normalization, cue vocabulary, selection and timing plan | [GitHub](https://github.com/LAION-AI/procedural-voice-captions) |
+
+**Humaneness Ears is encoder-only: it does not transcribe audio.** The Medium variant uses the Whisper Small encoder. ASR is supplied separately by Parakeet. MOSS describes selected events; it does not discover their timestamps. One MOSS base is loaded per worker, and the two LoRA adapters are switched for their respective tasks.
+
+## Run it
+
+Python **3.11+** and FFmpeg are needed. Composition from saved predictions uses only Python's standard library:
+
+```bash
+git clone https://github.com/LAION-AI/Humanness-Voice-Annotator.git
+cd Humanness-Voice-Annotator
+python -m pip install -e .
+
+humanness-annotate from-saved --acoustic examples/acoustic.json \
+  --moss examples/moss.json --output outputs/example.json
+humanness-annotate verify outputs/example.json
+```
+
+This reproduces the first real demo annotation. Download its audio from the listening page; `examples/annotation.json` records its SHA-256. The paired stage sidecars are included for an API-free format check.
+
+The independent formatter contract tests pass. A full fresh-inference smoke test on **three English recordings and one German recording** also passed, running one recording per GH200 GPU with four CPU threads, separate acoustic/MOSS environments and locally staged models. Each run completed all model stages and the final format proof. The 201–208 s per recording include cold model loading and multiple event-caption generations; these are smoke-test times, not a bulk throughput benchmark. [Verification record](docs/data/full-inference-verification.json).
+
+### Fresh model inference
+
+The acoustic stack needs Transformers **5.14.1**, while the released MOSS code needs **4.57.1**. Use two environments to keep these versions separate. Install the appropriate PyTorch build for your accelerator; the supplied requirements record the tested versions.
+
+```bash
+python -m venv .venv-acoustic
+python -m venv .venv-moss
+.venv-acoustic/bin/pip install -r requirements-acoustic.txt -e .
+.venv-moss/bin/pip install -r requirements-moss.txt -e .
+
+# Run this once on a machine with internet access. About 22 GB of model data.
+.venv-acoustic/bin/python scripts/download_models.py --output models
+
+# No API key is required for annotation. CPU is supported with --device cpu.
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 humanness-annotate annotate clip.mp3 \
+  --language en --output outputs/clip.json \
+  --acoustic-python .venv-acoustic/bin/python \
+  --moss-python .venv-moss/bin/python --device cuda:0 --threads 4 \
+  --procedural-dir models/procedural \
+  --humaneness-dir models/humaneness_ears --parakeet-dir models/parakeet \
+  --voice-dir models/moss_voice --burst-dir models/moss_burst
+```
+
+The MOSS voice bundle contains its base and adapter; the download script fetches only the adapter from the burst release, avoiding a second base copy. For offline clusters, download everything on a connected machine before running GPU inference. The runtime also supports automatic downloads when local directory options are omitted and internet access is available.
+
+Each stage writes an atomic sidecar. Successful stages are reused after an interruption, keyed by audio hash, pinned model versions and settings. Local model overrides must contain the matching pinned artifacts; their directory names are recorded in the private cache identity, but their contents are not rehashed. Replace the cache when changing local weights in place. The final public annotation retains original audio SHA-256, all raw captions and scores, selected intervals and the independent format proof.
+
+The current fresh path runs one audio at a time per worker. For a corpus, distribute files across GPU workers and reuse the released model APIs for persistent model loading; the CLI is a reproducible reference, not a throughput-optimized bulk service. MOSS generation dominates latency. See [runtime details](https://projects.laion.ai/Humanness-Voice-Annotator/pipeline.html).
+
+## Default settings and interpretation
+
+| Setting | Default | Meaning |
+|---|---:|---|
+| Event threshold | 0.60 | Threshold on event-onset proposals; a practical starting point, not a calibrated correctness probability |
+| Minimum event length | 0.08 s | Discard very short proposals |
+| Overlap suppression | >0.50 of the shorter interval | Remove strongly overlapping proposals; smaller overlaps remain |
+| Extra event cap | None | The neural proposal generator still has a capacity of 32 per 30 s window |
+| Local VoiceNet cues | At most 2 | Compact cue selection |
+| Local emotion cues | At most 1; z ≥0.50 | Keep prominent reference-relative emotions |
+| Pleasantness wording | Predicted AudioBox Content Enjoyment | VoiceNet aesthetics remains available in raw outputs |
+| Explicit pause threshold | 0.20 s | Short gaps are absorbed into neighboring budgets |
+| MOSS decoding | Greedy; temperature 0 | 512 global / 256 event tokens; retry at 1,024 if truncated |
+
+The speech normalizer uses **80,265** predicted reference clips: **41,771 S10 + 38,494 multilingual Emilia**, with arithmetic mean and population standard deviation (`ddof=0`). A z-score is `(raw − mean) / std`. It measures deviation from this reference, **not** an emotion probability. Reference languages are DE/EN/FR/JA/KO/ZH; this does not extend Parakeet's ASR language support. Existing raw teacher annotations are kept separate.
+
+MOSS can still make demographic or psychological claims: its GENERAL text is preserved verbatim. The procedural cue selector omits its own demographic and genuineness wording, but that does not sanitize the separate MOSS caption. Emotion tags, tiny speech segments and overlapping burst proposals deserve listening-based review.
+
+## Audio-based evaluation of this default format
+
+The final annotations for **50 reused synthetic acting recordings** (45 English, 5 German) were reviewed against their original audio using **Gemini 3.8 Flash**. The reviewer received the emitted GENERAL/SCRIPT, local cues and exact timestamps, without intended TTS scripts or target emotions. The configuration was frozen before these new ratings; we did not optimize it using this report.
+
+| Metric (0–5; higher is better) | Mean | 95% clip bootstrap interval |
+|---|---:|---:|
+| **Weighted composite** | **3.263** | **3.192–3.332** |
+| Whole-recording caption fidelity | 3.82 | 3.70–3.92 |
+| Whole-recording emotion fit | 3.74 | 3.60–3.86 |
+| Local speech emotion fit | 2.78 | 2.62–2.92 |
+| Whole-recording talking-style fit | 3.86 | 3.76–3.94 |
+| Local speech delivery fit | 3.10 | 3.02–3.20 |
+| Burst-description fit | 3.02 | 2.86–3.16 |
+| Burst-timing fit | 2.52 | 2.36–2.68 |
+| Event precision **rating** | 2.88 | 2.74–3.00 |
+| Event coverage **rating** | 3.46 | 3.32–3.60 |
+| Transcript fidelity† | 4.30 | 4.14–4.46 |
+| Speech-timing fit† | 3.42 | 3.28–3.56 |
+| Readability† | 3.86 | 3.76–3.94 |
+
+† Diagnostics outside the composite. Event precision/coverage are ordinal reviewer ratings, **not measured precision/recall percentages**. The whole-recording acoustic/style descriptions are stronger than local emotion tags and event timing. Reviewer notes identify misplaced fine-grained emotions and redundant or overlapping proposals. The listening demo shows these errors rather than editing them away.
+
+All **50** format proofs pass, covering **2,703 recognized words, 662 timed speech segments and 360 selected burst intervals**. The 662 segments derive from 443 source sentences; split pieces reuse their source-sentence scores. Passing the mechanical proof means that words/events are retained and elapsed budgets agree, not that the predictions match the audio.
+
+This is a **single automated reviewer**, a small English-heavy synthetic sample and a reused listening set, without human adjudication or inter-rater agreement. Confidence intervals reflect clip sampling only. These new rubric scores cannot be numerically compared with the older MOSS/procedural composite, whose criteria and weights differ. Model validation losses and the independent Humaneness Ears benchmarks answer different questions.
+
+The review cost **$0.437 at published list prices**, based on returned token usage; it is not an invoice. [Rubric](evaluation/rubric.json), [review code](evaluation/review.py), [aggregation code](evaluation/summarize.py), [all 50 reviews](docs/data/reviews.jsonl), [summary](docs/data/evaluation-summary.json) and [canonical annotations](docs/data/annotations.jsonl.gz) are included. The [evaluation page](https://projects.laion.ai/Humanness-Voice-Annotator/evaluation.html) explains weights, uncertainty and reproduction.
+
+## Models, training and upstream context
+
+Both MOSS adapters fine-tune the language backbone of [MOSS-Audio-8B-Instruct](https://huggingface.co/OpenMOSS-Team/MOSS-Audio-8B-Instruct). Each has **87,293,952 trainable LoRA parameters**, rank 32 / alpha 64 / dropout 0.05, two epochs, peak LR 1e-4, AdamW, 5% warmup and cosine decay. The audio encoder and original base weights are frozen. The voice adapter uses 58,380 training examples; the burst adapter uses 80,773. Audio-hash-disjoint train/validation/test splits keep a recording's events together. Supervision is machine-generated caption text. This 50-recording TTS demo is not the adapter-training corpus.
+
+The Humaneness Ears model jointly predicts emotion, voice properties, quality and embeddings, and locates/classifies vocal events. Its full training methods and independent score/benchmark evaluations are in its [release](https://huggingface.co/laion/humaneness-ears-base-medium) and [benchmark report](https://laion-whisper-base-small-emotion-voice-burst.static.hf.space/benchmark.html). This repository does not reinterpret automatic emotion predictions as human ground truth.
+
+For details and original taxonomies, follow [EmoNet / emotion annotations](https://github.com/LAION-AI/emotion-annotations), [VoiceNet](https://github.com/LAION-AI/voicenet), [procedural voice captions](https://github.com/LAION-AI/procedural-voice-captions), and each released model card. [The models page](https://projects.laion.ai/Humanness-Voice-Annotator/models.html) includes the executed MOSS training recipe, split sizes and pinned revisions.
+
+## Explore and contribute
+
+Listen to the [new default-format demo](https://projects.laion.ai/Humanness-Voice-Annotator/), compare the [earlier MOSS/procedural listening grid](https://laion-moss-voice-acting-captions.static.hf.space/format-comparison.html), or inspect the [German-English Voice Acting Challenges dataset](https://huggingface.co/datasets/laion/german-english-voice-acting-challenges). The examples retain their voice names, language, source subset and audio hashes.
+
+Useful contributions include listening-based corrections, human evaluation with documented agreement, better event merging, restrained local emotion wording and additional languages with a suitable timestamping ASR backend. Please include a reproducible example, the pinned model versions and a description of the audible error. Preserve the raw prediction alongside corrections.
+
+## License and attribution
+
+**Our orchestration code, documentation and new annotations are CC BY 4.0, attributed to LAION.** See [LICENSE](LICENSE) and [THIRD_PARTY.md](THIRD_PARTY.md). The attributed procedural timing planner is included unchanged at a pinned revision. Upstream MOSS base code/weights retain Apache 2.0; NVIDIA, PyTorch, Transformers, PEFT and other upstream components retain their own terms. This repository does not replace their licenses.
+
+Please cite the exact release/revision when using the pipeline. `humanness_voice_annotator/assets/sources.json` records model revisions; `procedural-source-lock.json` verifies every downloaded procedural source file by SHA-256.

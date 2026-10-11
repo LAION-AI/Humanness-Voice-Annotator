@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "humanness-voice-annotator"
+version = "1.0.0"
+description = "Reproducible GENERAL/SCRIPT voice annotations with MOSS, Humaneness Ears and Parakeet"
+requires-python = ">=3.11"
+license = "CC-BY-4.0"
+readme = "README.md"
+authors = [{name = "LAION"}]
+dependencies = []
+
+[project.scripts]
+humanness-annotate = "humanness_voice_annotator.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["humanness_voice_annotator*"]
+
+[tool.setuptools.package-data]
+humanness_voice_annotator = ["assets/*.json"]

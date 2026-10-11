@@ -1,0 +1,9 @@
+torch==2.9.1
+torchaudio==2.9.1
+transformers==5.14.1
+huggingface_hub>=0.36,<2
+safetensors>=0.4
+numpy
+scipy
+soundfile
+imageio-ffmpeg

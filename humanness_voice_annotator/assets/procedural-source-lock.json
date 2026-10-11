@@ -1,0 +1,19 @@
+{
+  "repository": "LAION-AI/procedural-voice-captions",
+  "revision": "df9514b05f234c692a9e88df7633f5460346d2c9",
+  "files": {
+    "caption.py": "4f84b1b502be8fcd091a51271a0cc317441d8e3b8cd06ff194bc957c38e2c081",
+    "humaneness_backend.py": "3b318831e66fc27e6f1e3d231635b6ab69338631dbdcc37571cb1603468ad0a6",
+    "humaneness_captions.py": "abba951caacaf8a52b9f3183c9ca115550b85de2ef373b3c189127ab458d7f26",
+    "humaneness_caption_settings.py": "ddb84fc35a3a0ac91e3ca427dede4d8a00cf41c7b0d28978e1745c0c7597940e",
+    "humaneness_caption_config.json": "f455d4c9cd462d3704601ce538a4dc173a5468f8b458665d33b7365b0b2be5d3",
+    "refresh_saved_caption.py": "59ab4ac98d93dc74fce829e6b647ffe6cddbb7e9dac1f174454d215adabdbc29",
+    "prompt_format.py": "e828b3c0246bcc73f2f25a58bd37f43cac400d0e81c87ff3770f8d9532167c89",
+    "burst_captions.py": "1d23b4a6006ef29b6dd31be562b0fc2dc07fb9084f6d8d79ec47e9872b8dd6c2",
+    "burst_x2.py": "2daa9f7cc897a4f4229c6b24198c1146afc6545a351c5adfa64358bb5eac10d0",
+    "asr_words.py": "50e26e70830dbb4a5b9d54dc4d588c41c40113985145e2e550f2a322cbd8feca",
+    "vocalburst_taxonomy.json": "63a7814cacdb91e73b5d96f8c42fcd460e3529e1b800b4571dc6820440627a1f",
+    "baseline_stats_humaneness_medium_speech.json": "c96503622619f63528a12ddcb28b19d4beddff7d94522d11b6a83dabad654f43",
+    "LICENSE-HUMANENESS-MEDIUM.md": "2f3dc16051e56ec5e6d33da6cbec4257198084452c8b199896d435d6eb86887f"
+  }
+}
