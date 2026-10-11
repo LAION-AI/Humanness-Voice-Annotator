@@ -19,7 +19,7 @@ def main():
         'humaneness_ears': ['model.py', 'training_normalization.json', 'classes.json',
                            'medium/config.json', 'medium/model.safetensors', 'medium/preprocessor_config.json',
                            'README.md', '*LICENSE*'],
-        'parakeet': ['config.json', '*.safetensors', '*.safetensors.index.json',
+        'parakeet': ['config.json', 'generation_config.json', '*.safetensors', '*.safetensors.index.json',
                      '*token*', '*vocab*', '*processor*', '*.model', 'README.md', '*LICENSE*'],
         'moss_voice': None,
         'moss_burst': ['adapter/*', 'README.md', '*LICENSE*'],
