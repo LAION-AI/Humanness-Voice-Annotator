@@ -1,0 +1,428 @@
+{
+  "schema": "humanness-voice-token-preflight-v1",
+  "records": [
+    {
+      "id": "de-00001",
+      "frames": 422,
+      "reference_frames": 0,
+      "input_shape": [
+        1985,
+        13
+      ],
+      "supervised_steps": 423,
+      "audio_loss_targets": 5064,
+      "format_verified": true
+    },
+    {
+      "id": "de-00001",
+      "frames": 422,
+      "reference_frames": 8,
+      "input_shape": [
+        1994,
+        13
+      ],
+      "supervised_steps": 423,
+      "audio_loss_targets": 5064,
+      "format_verified": true
+    },
+    {
+      "id": "de-00257",
+      "frames": 515,
+      "reference_frames": 0,
+      "input_shape": [
+        2737,
+        13
+      ],
+      "supervised_steps": 516,
+      "audio_loss_targets": 6180,
+      "format_verified": true
+    },
+    {
+      "id": "de-00257",
+      "frames": 515,
+      "reference_frames": 8,
+      "input_shape": [
+        2746,
+        13
+      ],
+      "supervised_steps": 516,
+      "audio_loss_targets": 6180,
+      "format_verified": true
+    },
+    {
+      "id": "de-00513",
+      "frames": 353,
+      "reference_frames": 0,
+      "input_shape": [
+        1910,
+        13
+      ],
+      "supervised_steps": 354,
+      "audio_loss_targets": 4236,
+      "format_verified": true
+    },
+    {
+      "id": "de-00513",
+      "frames": 353,
+      "reference_frames": 8,
+      "input_shape": [
+        1919,
+        13
+      ],
+      "supervised_steps": 354,
+      "audio_loss_targets": 4236,
+      "format_verified": true
+    },
+    {
+      "id": "de-00769",
+      "frames": 317,
+      "reference_frames": 0,
+      "input_shape": [
+        2063,
+        13
+      ],
+      "supervised_steps": 318,
+      "audio_loss_targets": 3804,
+      "format_verified": true
+    },
+    {
+      "id": "de-00769",
+      "frames": 317,
+      "reference_frames": 8,
+      "input_shape": [
+        2072,
+        13
+      ],
+      "supervised_steps": 318,
+      "audio_loss_targets": 3804,
+      "format_verified": true
+    }
+  ],
+  "passed": true,
+  "processor_loaded_codec": false,
+  "checks": [
+    "4 codec encode/decode canaries",
+    "128 records encoded",
+    "T x 12 arrays in range",
+    "native 13-channel packing",
+    "T+1 target-only shifted steps",
+    "reference stop excluded from supervision",
+    "12*T audio targets"
+  ],
+  "native_surface_checks": {
+    "schema": "humanness-voice-native-packing-check-v1",
+    "passed": true,
+    "processor_has_chat_template": false,
+    "chat_template_policy": "Use released processor behavior, including its raw-content fallback if absent",
+    "neural_codec_loaded": false,
+    "neural_tts_weights_loaded": false,
+    "results": [
+      {
+        "id": "de-00001",
+        "surface": "general-script",
+        "legacy": false,
+        "reference_frames": 0,
+        "codec_frames": 422,
+        "input_shape": [
+          1985,
+          13
+        ],
+        "supervised_steps": 423,
+        "audio_loss_targets": 5064
+      },
+      {
+        "id": "de-00001",
+        "surface": "general-script",
+        "legacy": false,
+        "reference_frames": 24,
+        "codec_frames": 422,
+        "input_shape": [
+          2010,
+          13
+        ],
+        "supervised_steps": 423,
+        "audio_loss_targets": 5064
+      },
+      {
+        "id": "de-00001",
+        "surface": "general-script",
+        "legacy": true,
+        "reference_frames": 0,
+        "codec_frames": 422,
+        "input_shape": [
+          1985,
+          13
+        ],
+        "supervised_steps": 423,
+        "audio_loss_targets": 5064
+      },
+      {
+        "id": "de-00001",
+        "surface": "caption-transcript",
+        "legacy": false,
+        "reference_frames": 0,
+        "codec_frames": 422,
+        "input_shape": [
+          850,
+          13
+        ],
+        "supervised_steps": 423,
+        "audio_loss_targets": 5064
+      },
+      {
+        "id": "de-00002",
+        "surface": "general-script",
+        "legacy": false,
+        "reference_frames": 0,
+        "codec_frames": 307,
+        "input_shape": [
+          1847,
+          13
+        ],
+        "supervised_steps": 308,
+        "audio_loss_targets": 3684
+      },
+      {
+        "id": "de-00002",
+        "surface": "general-script",
+        "legacy": false,
+        "reference_frames": 24,
+        "codec_frames": 307,
+        "input_shape": [
+          1872,
+          13
+        ],
+        "supervised_steps": 308,
+        "audio_loss_targets": 3684
+      },
+      {
+        "id": "de-00002",
+        "surface": "general-script",
+        "legacy": true,
+        "reference_frames": 0,
+        "codec_frames": 307,
+        "input_shape": [
+          1847,
+          13
+        ],
+        "supervised_steps": 308,
+        "audio_loss_targets": 3684
+      },
+      {
+        "id": "de-00002",
+        "surface": "caption-transcript",
+        "legacy": false,
+        "reference_frames": 0,
+        "codec_frames": 307,
+        "input_shape": [
+          680,
+          13
+        ],
+        "supervised_steps": 308,
+        "audio_loss_targets": 3684
+      }
+    ]
+  },
+  "english_record_check": {
+    "id": "en-00245",
+    "language": "en",
+    "voice": "Despina",
+    "split": "train",
+    "codes_shape": [
+      251,
+      12
+    ],
+    "code_range": [
+      0,
+      1023
+    ],
+    "padding_ms": 64.0,
+    "event_count": 6,
+    "word_count": 53,
+    "format_verified": true,
+    "metadata_present": true,
+    "codec_revision": "f6e20e543b33d2c252a7ef71bdf8aa71e5ff9169",
+    "moss_producer_revisions": {
+      "moss_voice": "07cad84c33c676ea37979fb7ee844fd06ad92a76",
+      "moss_burst": "434e38f7e3eeaac0de4d3325b93a924e441153ce"
+    }
+  },
+  "production_reconstruction_canaries": [
+    {
+      "id": "de-00001",
+      "frames": 422,
+      "codebooks": 12,
+      "range": [
+        0,
+        1023
+      ],
+      "decode_samples": 1620480,
+      "finite": true
+    },
+    {
+      "id": "de-00257",
+      "frames": 515,
+      "codebooks": 12,
+      "range": [
+        0,
+        1023
+      ],
+      "decode_samples": 1977600,
+      "finite": true
+    },
+    {
+      "id": "de-00513",
+      "frames": 353,
+      "codebooks": 12,
+      "range": [
+        0,
+        1022
+      ],
+      "decode_samples": 1355520,
+      "finite": true
+    },
+    {
+      "id": "de-00769",
+      "frames": 317,
+      "codebooks": 12,
+      "range": [
+        0,
+        1023
+      ],
+      "decode_samples": 1217280,
+      "finite": true
+    },
+    {
+      "id": "de-01027",
+      "frames": 487,
+      "codebooks": 12,
+      "range": [
+        0,
+        1023
+      ],
+      "decode_samples": 1870080,
+      "finite": true
+    },
+    {
+      "id": "de-01283",
+      "frames": 382,
+      "codebooks": 12,
+      "range": [
+        0,
+        1023
+      ],
+      "decode_samples": 1466880,
+      "finite": true
+    },
+    {
+      "id": "de-01539",
+      "frames": 412,
+      "codebooks": 12,
+      "range": [
+        0,
+        1023
+      ],
+      "decode_samples": 1582080,
+      "finite": true
+    },
+    {
+      "id": "de-01796",
+      "frames": 337,
+      "codebooks": 12,
+      "range": [
+        0,
+        1023
+      ],
+      "decode_samples": 1294080,
+      "finite": true
+    },
+    {
+      "id": "de-02052",
+      "frames": 370,
+      "codebooks": 12,
+      "range": [
+        0,
+        1023
+      ],
+      "decode_samples": 1420800,
+      "finite": true
+    },
+    {
+      "id": "de-02308",
+      "frames": 414,
+      "codebooks": 12,
+      "range": [
+        0,
+        1023
+      ],
+      "decode_samples": 1589760,
+      "finite": true
+    },
+    {
+      "id": "de-02564",
+      "frames": 351,
+      "codebooks": 12,
+      "range": [
+        0,
+        1023
+      ],
+      "decode_samples": 1347840,
+      "finite": true
+    },
+    {
+      "id": "de-02820",
+      "frames": 481,
+      "codebooks": 12,
+      "range": [
+        0,
+        1023
+      ],
+      "decode_samples": 1847040,
+      "finite": true
+    },
+    {
+      "id": "de-03076",
+      "frames": 348,
+      "codebooks": 12,
+      "range": [
+        0,
+        1023
+      ],
+      "decode_samples": 1336320,
+      "finite": true
+    },
+    {
+      "id": "de-03333",
+      "frames": 249,
+      "codebooks": 12,
+      "range": [
+        0,
+        1023
+      ],
+      "decode_samples": 956160,
+      "finite": true
+    },
+    {
+      "id": "de-03589",
+      "frames": 379,
+      "codebooks": 12,
+      "range": [
+        0,
+        1023
+      ],
+      "decode_samples": 1455360,
+      "finite": true
+    },
+    {
+      "id": "de-03846",
+      "frames": 337,
+      "codebooks": 12,
+      "range": [
+        0,
+        1023
+      ],
+      "decode_samples": 1294080,
+      "finite": true
+    }
+  ]
+}

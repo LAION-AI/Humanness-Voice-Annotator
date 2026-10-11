@@ -1,0 +1,82 @@
+{
+  "schema": "humanness-voice-tuning-summary-v1",
+  "n_samples": 38427,
+  "n_shards": 151,
+  "audio_hours": 314.13449999999995,
+  "codec_frames": 14157137,
+  "codec_indices": 169885644,
+  "selected_burst_events": 312968,
+  "asr_words": 2152571,
+  "asr_empty_samples": 1,
+  "bytes": 6326425600,
+  "splits": {
+    "train": {
+      "n_samples": 36755,
+      "audio_hours": 300.58091333333334,
+      "challenge_groups": 18386
+    },
+    "validation": {
+      "n_samples": 794,
+      "audio_hours": 6.501026666666666,
+      "challenge_groups": 397
+    },
+    "test": {
+      "n_samples": 878,
+      "audio_hours": 7.05256,
+      "challenge_groups": 439
+    }
+  },
+  "languages": {
+    "de": 19212,
+    "en": 19215
+  },
+  "voices": {
+    "Achernar": 1279,
+    "Achird": 1282,
+    "Algenib": 1279,
+    "Algieba": 1282,
+    "Alnilam": 1280,
+    "Aoede": 1280,
+    "Autonoe": 1281,
+    "Callirrhoe": 1283,
+    "Charon": 1282,
+    "Despina": 1281,
+    "Enceladus": 1281,
+    "Erinome": 1279,
+    "Fenrir": 1282,
+    "Gacrux": 1282,
+    "Iapetus": 1280,
+    "Kore": 1283,
+    "Laomedeia": 1282,
+    "Leda": 1280,
+    "Orus": 1280,
+    "Puck": 1282,
+    "Pulcherrima": 1283,
+    "Rasalgethi": 1282,
+    "Sadachbia": 1281,
+    "Sadaltager": 1280,
+    "Schedar": 1280,
+    "Sulafat": 1279,
+    "Umbriel": 1282,
+    "Vindemiatrix": 1280,
+    "Zephyr": 1280,
+    "Zubenelgenubi": 1280
+  },
+  "source_subsets": {
+    "eric_morris_inspired": 8060,
+    "existing_challenge_inspired": 14780,
+    "extreme_physical": 1196,
+    "haiku_batch": 2000,
+    "laions_got_talent": 556,
+    "situation_inspired": 11435,
+    "voicenet_extension": 400
+  },
+  "heldout_demo_challenge_groups": 50,
+  "verified": {
+    "full_source_coverage": true,
+    "unchanged_audio_hashes": true,
+    "unchanged_voice_language_subset_duration": true,
+    "no_scenario_split_leakage": true
+  },
+  "export_lock_sha256": "35ac0801fa9a7585b122f6c7e0cedcff359acad332008189a699fdbb353f2a77"
+}

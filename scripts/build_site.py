@@ -52,7 +52,7 @@ def document(title, body, *, listening=False):
 {styles}</head><body><a href="#main" class="skip">Skip to content</a><header><nav aria-label="Main navigation">
 <a class="brand" href="index.html">Humanness Voice Annotator</a><a href="index.html#listening">Listen</a>
 <a href="format.html">Format</a><a href="models.html">Models &amp; training</a><a href="pipeline.html">Run the pipeline</a>
-<a href="evaluation.html">Evaluation</a><a href="https://github.com/LAION-AI/Humanness-Voice-Annotator">GitHub ↗</a></nav></header>
+<a href="evaluation.html">Evaluation</a><a href="training.html">Tuning data</a><a href="https://github.com/LAION-AI/Humanness-Voice-Annotator">GitHub ↗</a></nav></header>
 <main id="main">{body}</main><footer>LAION · 11 October 2026 · Original code, documentation and new annotations: CC BY 4.0 ·
 <a href="https://github.com/LAION-AI/Humanness-Voice-Annotator/blob/main/THIRD_PARTY.md">Upstream credits and retained licenses</a></footer>{javascript}</body></html>'''
 

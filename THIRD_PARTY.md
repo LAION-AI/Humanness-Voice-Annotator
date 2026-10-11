@@ -14,6 +14,7 @@ Our formatting module adapts the planner's *output* to combined round-bracket sp
 - [Humaneness Ears](https://huggingface.co/laion/humaneness-ears-base-medium): see the released model card, code and original upstream model credits. The Medium network originates from the [OpenAI Whisper Small](https://huggingface.co/openai/whisper-small) encoder.
 - [NVIDIA Parakeet TDT 0.6B v3](https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3): retains its released license and notices; inspect them before redistribution.
 - [German-English Voice Acting Challenges](https://huggingface.co/datasets/laion/german-english-voice-acting-challenges): synthetic audio and new annotations are released under CC BY 4.0; source challenge and voice metadata are retained.
+- [MOSS Audio Tokenizer v2](https://huggingface.co/OpenMOSS-Team/MOSS-Audio-Tokenizer-v2): the separately downloaded codec used for tuning targets retains **Apache 2.0**, including its code, weights and notices. Reviewed artifact hashes are recorded in `assets/training-codec.json`. Using twelve of its codebooks does not change its license.
 
 ## Software
 

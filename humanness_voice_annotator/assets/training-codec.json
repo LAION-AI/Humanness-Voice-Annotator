@@ -1,0 +1,54 @@
+{
+  "repository": "OpenMOSS-Team/MOSS-Audio-Tokenizer-v2",
+  "revision": "f6e20e543b33d2c252a7ef71bdf8aa71e5ff9169",
+  "files": [
+    {
+      "path": "LICENSE",
+      "size": 11324,
+      "lfs_sha256": null,
+      "git_blob": "b09cd7856d58590578ee1a4f3ad45d1310a97f87"
+    },
+    {
+      "path": "config.json",
+      "size": 10166,
+      "lfs_sha256": null,
+      "git_blob": "5a94059fa4106b43d1dc53f07efd759793d54af5"
+    },
+    {
+      "path": "configuration_moss_audio_tokenizer.py",
+      "size": 19772,
+      "lfs_sha256": null,
+      "git_blob": "0649b97e337ad5532d1767c97e14749edbba5f06"
+    },
+    {
+      "path": "model-00001-of-00003.safetensors",
+      "size": 3978639168,
+      "lfs_sha256": "2d9f9182f17b143a23937feb87c63c08221bd28e685e4bc2fa55dcdce17fcde7",
+      "git_blob": "9f223ea1b8ede9e271d3b24587a10e1dcdf31c01"
+    },
+    {
+      "path": "model-00002-of-00003.safetensors",
+      "size": 3992738352,
+      "lfs_sha256": "d4e48106d0254fe3b00ea0707e88fc6aee076993825e108dd9cef847f9db236e",
+      "git_blob": "e645ec1e83826473451fce5c01654911871b2e50"
+    },
+    {
+      "path": "model-00003-of-00003.safetensors",
+      "size": 523681336,
+      "lfs_sha256": "d0449fe1b0ef1f6045946867148d8166b9a91a58d0feca4a18b641494d0b22da",
+      "git_blob": "0144338d448092c131140cb1d32b87174dc075b4"
+    },
+    {
+      "path": "model.safetensors.index.json",
+      "size": 191718,
+      "lfs_sha256": null,
+      "git_blob": "475b2b6753b96451aa6ec35587cff28ab07b01d3"
+    },
+    {
+      "path": "modeling_moss_audio_tokenizer.py",
+      "size": 105970,
+      "lfs_sha256": null,
+      "git_blob": "3da48dce423e8dd1e58c9225d54553350e83acdd"
+    }
+  ]
+}

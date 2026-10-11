@@ -1,0 +1,46 @@
+{
+  "schema": "humanness-voice-tuning-compute-v1",
+  "hardware": "JUPITER Booster GH200",
+  "nodes": 4,
+  "gpus": 16,
+  "cpu_threads_per_gpu": 4,
+  "batch_per_gpu": 8,
+  "codec_codebooks": 12,
+  "streaming_chunk_seconds": 4.8,
+  "n_clips": 38427,
+  "audio_hours": 314.13449999999995,
+  "jobs": [
+    {
+      "job_id": "2273475",
+      "state": "FAILED",
+      "elapsed_s": 131,
+      "gpus": 4,
+      "allocated_gpu_hours": 0.14555555555555555,
+      "start_local": "2026-10-11T13:48:21",
+      "end_local": "2026-10-11T13:50:32"
+    },
+    {
+      "job_id": "2273586",
+      "state": "COMPLETED",
+      "elapsed_s": 138,
+      "gpus": 4,
+      "allocated_gpu_hours": 0.15333333333333332,
+      "start_local": "2026-10-11T13:54:56",
+      "end_local": "2026-10-11T13:57:14"
+    },
+    {
+      "job_id": "2273620",
+      "state": "COMPLETED",
+      "elapsed_s": 918,
+      "gpus": 16,
+      "allocated_gpu_hours": 4.08,
+      "start_local": "2026-10-11T13:59:54",
+      "end_local": "2026-10-11T14:15:12"
+    }
+  ],
+  "production_allocated_gpu_hours": 4.08,
+  "total_allocated_gpu_hours_including_pilots": 4.378888888888889,
+  "production_clips_per_s_including_startup": 41.85947712418301,
+  "summed_encode_wall_s_across_workers": 8321.747150207986,
+  "timing_scope": "Codec encoding plus recomposition/compression of already-complete cached captions; no fresh MOSS caption-model inference. Allocated GPU hours include startup and idle time; not an invoice."
+}

@@ -1,6 +1,6 @@
 # Humanness Voice Annotator
 
-**[Listen to the 50-example demo →](https://projects.laion.ai/Humanness-Voice-Annotator/)** · [Format guide](https://projects.laion.ai/Humanness-Voice-Annotator/format.html) · [Models and training](https://projects.laion.ai/Humanness-Voice-Annotator/models.html) · [Evaluation](https://projects.laion.ai/Humanness-Voice-Annotator/evaluation.html)
+**[Listen to the 50-example demo →](https://projects.laion.ai/Humanness-Voice-Annotator/)** · [Format guide](https://projects.laion.ai/Humanness-Voice-Annotator/format.html) · [Models and training](https://projects.laion.ai/Humanness-Voice-Annotator/models.html) · [Evaluation](https://projects.laion.ai/Humanness-Voice-Annotator/evaluation.html) · **[Tuning data: captions + MOSS v2 tokens](https://projects.laion.ai/Humanness-Voice-Annotator/training.html)**
 
 Turn audio into a description of the voice and a timed performance script. Humanness Voice Annotator combines **two MOSS captioning adapters, Humaneness Ears Medium, Parakeet v3 and the procedural voice-captioning rules**. Its default output is one documented **`GENERAL / SCRIPT`** format, backed by a JSON sidecar with absolute timestamps and original predictions.
 
@@ -126,6 +126,22 @@ The current fresh path runs one audio at a time per worker. For a corpus, distri
 The speech normalizer uses **80,265** predicted reference clips: **41,771 S10 + 38,494 multilingual Emilia**, with arithmetic mean and population standard deviation (`ddof=0`). A z-score is `(raw − mean) / std`. It measures deviation from this reference, **not** an emotion probability. Reference languages are DE/EN/FR/JA/KO/ZH; this does not extend Parakeet's ASR language support. Existing raw teacher annotations are kept separate.
 
 MOSS can still make demographic or psychological claims: its GENERAL text is preserved verbatim. The procedural cue selector omits its own demographic and genuineness wording, but that does not sanitize the separate MOSS caption. Emotion tags, tiny speech segments and overlapping burst proposals deserve listening-based review.
+
+## Humaneness Voice tuning data
+
+**All 38,427 synthetic German/English acting recordings (314.13 hours)** now have the default GENERAL/SCRIPT caption and **MOSS Audio Tokenizer v2** audio targets. The additive release is available in **151 WebDataset TARs, 6.33 GB**, under `tuning/` in the original dataset. Original MP3s, previous caption variants, raw scores/embeddings and exact generation-voice metadata are preserved.
+
+**[Download the tuning release](https://huggingface.co/datasets/laion/german-english-voice-acting-challenges/tree/2f914a5081f6c0d6eb348b509ea50cf1d56aa7e3/tuning)** · [Loading and export guide](TRAINING_DATA.md) · [Explanatory page](https://projects.laion.ai/Humanness-Voice-Annotator/training.html) · [Complete statistics](docs/data/training-summary.json) · [Real training example](examples/tuning/en-00245.json)
+
+| Partition | Clips | Hours | Split unit |
+|---|---:|---:|---|
+| Train | 36,755 | 300.58 | Challenge scenario |
+| Validation | 794 | 6.50 | Challenge scenario |
+| Test | 878 | 7.05 | Challenge scenario, including the 50 listening scenarios |
+
+English/German counterparts stay together; voices occur across splits. These partitions prepare later TTS tuning and do not establish independent evaluation of the component caption/score models. The native targets are little-endian int16 **[T,12]**, code range 0–1023, with **80 ms per frame**. The model's `Tokens` budget is **T**. Each clip is explicitly right-padded before encoding, with its true sample count recorded for trimming. The corpus contains **14,157,137 frames**, **312,968 selected vocal-event intervals** and **2,152,571 recognized words**.
+
+The 128-clip codec pilot and native shifted-label packing checks passed. All source IDs/audio hashes/voice/language/subset/duration and scenario partitions were audited. Every caption passed the independent format verifier; this establishes mechanical consistency, not perceptual correctness. See the [preflight](docs/data/training-preflight.json), [export lock](docs/data/training-export-lock.json) and [compute report](docs/data/training-compute-report.json). The full export took **15 min 18 s on 16 GH200 GPUs: 4.08 allocated GPU-hours**, or **4.38 GPU-hours including both pilots**. Timings reuse completed caption predictions; they are not fresh MOSS caption-inference benchmarks. This is a data-preparation release; no new Humaneness Voice training result is claimed.
 
 ## Audio-based evaluation of this default format
 

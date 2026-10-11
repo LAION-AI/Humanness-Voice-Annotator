@@ -1,0 +1,8 @@
+# Install a matching accelerator build of torch separately if needed.
+torch==2.9.1
+transformers==4.57.1
+numpy>=2.0
+scipy>=1.14
+soundfile>=0.13
+safetensors>=0.5
+huggingface-hub>=0.34

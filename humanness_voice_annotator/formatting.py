@@ -68,7 +68,7 @@ def verify_script(script, transcript, duration_s, expected_bursts=None):
             "word_count": len(words), "burst_count": len(bursts), "parsed_bursts": bursts}
 
 
-def compose_annotation(acoustic, moss, *, pause_min_s=.2):
+def compose_annotation(acoustic, moss, *, pause_min_s=.2, model_sources=None):
     """Compose the prompt and canonical endpoints using one selected event list."""
     duration = float(acoustic["dur"])
     if abs(duration - float(moss["audio_duration_s"])) > .002:
@@ -153,7 +153,7 @@ def compose_annotation(acoustic, moss, *, pause_min_s=.2):
                    "independent_verification": check,
                    "inline_position_policy": "Nearest word gap to event midpoint; exact overlap remains in JSON",
                    "overlap_policy": "Inline event durations are contained in the enclosing segment budget"},
-        "models": sources()["models"], "settings": {
+        "models": copy.deepcopy(model_sources or sources()["models"]), "settings": {
             "locator": copy.deepcopy(moss["locator_settings"]), "pause_min_s": pause_min_s,
             "sentence_cues": copy.deepcopy(acoustic.get("caption_settings", {})),
             "normalization": copy.deepcopy(acoustic.get("normalization_provenance", {})),
