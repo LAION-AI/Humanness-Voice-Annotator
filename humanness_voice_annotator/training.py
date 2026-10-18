@@ -80,8 +80,12 @@ def training_fields(row, *, surface='general-script', legacy=False):
     if legacy and surface == 'general-script':
         prompt = legacy_square(prompt)
     text = prompt.split('SCRIPT:\n', 1)[1].strip() if surface == 'general-script' else row['asr_transcript']
+    languages = {'en':'English', 'de':'German', 'fr':'French',
+                 'nl':'Dutch', 'es':'Spanish'}
+    if row['language'] not in languages:
+        raise ValueError('Unsupported training language: '+str(row['language']))
     return {'instruction':prompt, 'text':text, 'tokens':row['codec']['frames'],
-            'language':{'en':'English','de':'German'}[row['language']]}
+            'language':languages[row['language']]}
 
 
 def tuning_records(path, *, split=None, include_annotation=False):

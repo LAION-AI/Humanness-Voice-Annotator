@@ -190,3 +190,74 @@ Useful contributions include listening-based corrections, human evaluation with 
 **Our orchestration code, documentation and new annotations are CC BY 4.0, attributed to LAION.** See [LICENSE](LICENSE) and [THIRD_PARTY.md](THIRD_PARTY.md). The attributed procedural timing planner is included unchanged at a pinned revision. Upstream MOSS base code/weights retain Apache 2.0; NVIDIA, PyTorch, Transformers, PEFT and other upstream components retain their own terms. This repository does not replace their licenses.
 
 Please cite the exact release/revision when using the pipeline. `humanness_voice_annotator/assets/sources.json` records model revisions; `procedural-source-lock.json` verifies every downloaded procedural source file by SHA-256.
+
+
+## Voice aliases for the acting-data releases
+
+The [voice-acting training dataset](https://huggingface.co/datasets/laion/german-english-voice-acting-challenges) uses **55 distinct synthetic speaker identities**: 30 standard voices, 24 separate add-on voices, and one additional French-accent character voice. Nine other French-accent voices reuse their standard identity. The standard aliases are unchanged; the add-on aliases have been migrated to neutral, unique names without collisions.
+
+The collections are organized as `standard_voices/en_de/`, `standard_voices/multilingual/`, `standard_voices/emotion_masking_physical/`, `character_voices/french_accent/`, and `add_on_voices/multilingual/`. The new English collection contains 240,000 generated recordings and is being annotated with this pipeline; [live release status](https://huggingface.co/datasets/laion/german-english-voice-acting-challenges/blob/main/metadata/release-status.json) distinguishes generated, annotated, tokenized and uploaded counts. A completed generation is not a completed annotation release.
+
+Every training recording gets its actual ASR, MOSS whole-recording caption, full-audio interval captions, Ears raw/reference-normalized scores and predicted 128D timbre / 250D identity vectors, plus MOSS Audio Tokenizer v2 targets. Historical complete annotations and token arrays are reused without changing their numeric predictions or audio bytes. Earlier archives are retained until complete replacement verification. Generation targets are separate from observed annotations.
+
+The reference-audio manifest selects a different recording of the exact same synthetic speaker, preferring a different dominant **reference-normalized predicted emotion**, a different scenario and the same split. It records the reference audio hash, TAR member and matching MOSS tokens. An unavailable emotion contrast or cross-split fallback is flagged rather than silently treated as an independent reference. The dataset loader can reject cross-split references for held-out evaluation.
+
+The following descriptions paraphrase the frozen generation-time catalogs. They characterize voice presentation rather than real human demographics; unknown pitch/age is not guessed. The actual delivery may vary substantially with the acting challenge. Synthetic origin and source identities remain documented in a separate dataset provenance manifest, while ordinary training fields and paths use aliases. [Machine-readable registry](docs/data/voice-aliases.json).
+
+| Alias | Group | Voice presentation | Register | Catalog age | Description |
+|---|---|---|---|---|---|
+| Aurora | standard_30 | female | high | not specified | Sunny, optimistic presence with a forward-moving delivery. |
+| Killian | standard_30 | male | low | not specified | Cheerful, energetic and approachable, with a substantial vocal body. |
+| Ezra | standard_30 | male | low | not specified | Grounded, consistent delivery suited to factual explanation. |
+| Liora | standard_30 | female | medium | not specified | Decisive and assured, with a direct presentation. |
+| Jasper | standard_30 | male | low | not specified | Passionate, animated delivery with considerable energy. |
+| Seraphina | standard_30 | female | high | not specified | Youthful-sounding, lively presence with an energetic delivery. |
+| Kael | standard_30 | male | low | not specified | Sober and resolute, with a practical, matter-of-fact delivery. |
+| Esme | standard_30 | female | medium | not specified | Airy, light delivery with an unhurried conversational feel. |
+| Genevieve | standard_30 | female | medium | not specified | Informal and at ease, with a relaxed conversational manner. |
+| Freya | standard_30 | female | medium | not specified | Enthusiastic and positive, with an animated promotional presence. |
+| Gideon | standard_30 | male | low | not specified | Quiet and intimate, with an airy, softly produced tone. |
+| Jensen | standard_30 | male | low | not specified | Cleanly enunciated, with precise and distinct articulation. |
+| Soren | standard_30 | male | low | not specified | Unforced, informal delivery with an easy conversational pace. |
+| Declan | standard_30 | male | low | not specified | Refined and flowing, with a composed professional finish. |
+| Isolde | standard_30 | female | medium | not specified | Rounded, gentle delivery with a polished professional character. |
+| Jocelyn | standard_30 | female | medium | not specified | Precisely articulated, intelligible delivery with a clear instructional feel. |
+| Darius | standard_30 | male | low | not specified | Low, textured delivery with a rugged and weighty dramatic presence. |
+| Maddox | standard_30 | male | medium | not specified | Measured, explanatory delivery suited to longer narration. |
+| Persephone | standard_30 | female | high | not specified | Buoyant and energetic, with an optimistic, outgoing presence. |
+| Elara | standard_30 | female | high | not specified | Delicate, restful delivery with a reassuring, soothing quality. |
+| Elias | standard_30 | male | low | not specified | Resolute and commanding, with a clear sense of authority. |
+| Silas | standard_30 | male | low | not specified | Level and dependable, with an even, balanced delivery. |
+| Kaia | standard_30 | female | medium | not specified | Mature-sounding, assured delivery with a formal professional presence. |
+| Sloane | standard_30 | neutral | medium | not specified | Assertive and self-possessed, with a direct forward presentation. |
+| Caspian | standard_30 | male | low | not specified | Welcoming and personable, with an informal, warm conversational tone. |
+| Thorne | standard_30 | male | low | not specified | Relaxed and informal, with an easy, conversational delivery. |
+| Celeste | standard_30 | female | medium | not specified | Softly reassuring, with a mild, composed and soothing delivery. |
+| Rowan | standard_30 | male | low | not specified | Expressive and lively, with an engaging spoken presentation. |
+| Ryder | standard_30 | male | medium | not specified | Assured and explanatory, with an even, knowledgeable presence. |
+| Ursula | standard_30 | female | medium | not specified | Reassuring and welcoming, with an inviting, warm delivery. |
+| Adrian | add_on_24 | male | unspecified | middle aged | Dominant, resolute delivery with a firm presence. |
+| Alina | add_on_24 | female | unspecified | middle aged | Precise, engaging instructional delivery with a professional finish. |
+| Bianca | add_on_24 | female | unspecified | middle aged | Luminous, welcoming delivery with a polished professional manner. |
+| Bastian | add_on_24 | male | unspecified | old | Seasoned-sounding and considered, with balanced, distinct articulation. |
+| Bennett | add_on_24 | male | low | middle aged | Low, full-bodied resonance with a soothing, reassuring presence. |
+| Caius | add_on_24 | male | unspecified | middle aged | Textured, husky character delivery with a mischievous edge. |
+| Calvin | add_on_24 | male | low | young | Low, self-assured delivery with an animated, energetic character. |
+| Cedric | add_on_24 | male | unspecified | middle aged | Personable and unpretentious, with a relaxed conversational presence. |
+| Dorian | add_on_24 | male | unspecified | middle aged | Consistent, composed delivery with a formal broadcast character. |
+| Edmund | add_on_24 | male | low | middle aged | Low, dark-toned dramatic delivery with a serious character. |
+| Emmett | add_on_24 | male | unspecified | middle aged | Flowing and composed, with a dependable conversational presence. |
+| Felix | add_on_24 | male | low | old | Low, gravelly texture balanced by a welcoming narrative warmth. |
+| Gareth | add_on_24 | male | unspecified | middle aged | Enveloping, engaging narrative delivery with a mature-sounding presence. |
+| Hugo | add_on_24 | male | unspecified | young | Rough-edged, forceful character delivery with youthful-sounding energy. |
+| Iris | add_on_24 | female | unspecified | young | Lighthearted and radiant, with a welcoming, playful character. |
+| Leonie | add_on_24 | female | unspecified | young | Animated, individualistic delivery with a lightly cheeky attitude. |
+| Lucian | add_on_24 | male | unspecified | young | Outgoing, self-assured delivery with a lively presentation style. |
+| Lydia | add_on_24 | female | unspecified | middle aged | Soft, plush vocal texture with a confident dramatic presence. |
+| Marielle | add_on_24 | female | unspecified | middle aged | Well-informed, professional delivery with a positive, animated manner. |
+| Remy | add_on_24 | neutral | unspecified | middle aged | Unhurried and composed, with an understated explanatory delivery. |
+| Ronan | add_on_24 | male | unspecified | middle aged | Relaxed and informal, with a full, resonant vocal body. |
+| Sabine | add_on_24 | female | unspecified | young | Assured and reassuring delivery with a polished, mature-sounding presence. |
+| Tobias | add_on_24 | male | low | middle aged | Low, welcoming narrative delivery with a professional finish. |
+| Wesley | add_on_24 | male | unspecified | young | Easygoing, positive delivery with an unhurried conversational manner. |
+| Gaston | character_extra | male | low / warm (character direction) | not specified | Warm, playful and gallant character; outwardly capable, emotionally receptive and lightly comic. Register and manner are performance directions, not acoustic measurements. |
